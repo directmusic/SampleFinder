@@ -1,5 +1,5 @@
 # SampleFinder
-
+<img src="/readme/screenshot.png" width="400">
 SampleFinder is a simple sample browser made to replace Logic Pro's built in file browser. It's quite rough around the edges but it is functional for my personal purposes. Perhaps you might find it useful as well.
 
 The advantages over logic's browser:
