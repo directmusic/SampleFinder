@@ -1,0 +1,18 @@
+{
+  "name": "SampleFinder",
+  "version": "0.0.1",
+  "description": "Simple Sample Manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^12.0.2"
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.5"
+  }
+}
