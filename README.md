@@ -5,12 +5,12 @@ SampleFinder is a simple sample browser made to replace Logic Pro's built in fil
 The advantages over logic's browser:
 
 * Searches for 2+ words searches for files with both of the words rather than their exact string.
-* Searches also look at folder name. (For example: A folder of kicks nameed 'kicks' with files named '01.wav, 02.wav, etc...' will show instead of being ignored).
+* Searches also look at folder name. (For example: A folder of kicks nameed `kicks` with files named `01.wav, 02.wav, etc...` will show instead of being ignored).
 * Favorites are far more accessible.
 
 # Get Started
 
-To configure
+First, edit the settings.json file to include your favorites and the directories you'd like SampleFinder to search.
 
 Run the following commands:
 
