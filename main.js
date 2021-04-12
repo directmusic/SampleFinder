@@ -96,6 +96,9 @@ async function fromDir(startPath, filter){
     
   }
   for(var i=0;i<files.length;i++){
+    files[i] = files[i].replaceAll(/'/g,"&apos;")
+    files[i] = files[i].replaceAll(/"/g,"&quot;")
+
     // takes the split tokens and checks if we match all of them.
     let n_valid_tokens = 0;
     for(var j = 0; j < filter_tokens.length; j++){
