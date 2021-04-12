@@ -156,7 +156,7 @@ ipcMain.on('folder', (event, args) => {
 ipcMain.on('ondragstart', (event, filePath) => {
   event.sender.startDrag({
     file: filePath,
-    icon: '/Users/joe/Dropbox/Graphics/Grow Cold Art 2 copy.png'
+    icon: 'file.png'
   })
 })
 function getCommandLine() {
