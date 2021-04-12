@@ -111,10 +111,10 @@ async function fromDir(startPath, filter){
 };
 
 ipcMain.on('search', (event, args) => {
-  event.sender.send('asynReply', "<div id='loading'>Loading...</div>")
+  event.sender.send('change_reply_content', "<div id='loading'>Loading...</div>")
 
   fromDir(settings_json.search_paths, args.toLowerCase()).then(
-    function(value) {event.sender.send('asynReply', value)}
+    function(value) {event.sender.send('change_reply_content', value)}
   );
  // win.setSize(700, 1000, true);
 });
@@ -125,7 +125,7 @@ ipcMain.on('favorites', (event, args) => {
   for (let i = 0; i < settings_json.favorites.length; i++){
     temp += "<a class='sample' href='javascript:void(0);' onmouseout='hoveroff()' onclick='open_folder(\"" + settings_json.favorites[i] + "\")'><img src='folder.png'/>"+ settings_json.favorites[i]+ "</a> <br>";
   }
-  event.sender.send('asynReply', temp)
+  event.sender.send('change_reply_content', temp)
 });
 
 async function load_all_files_in_folder(startPath){
@@ -146,10 +146,10 @@ async function load_all_files_in_folder(startPath){
 };
 
 ipcMain.on('folder', (event, args) => {
-  event.sender.send('asynReply', "<div id='loading'>Loading...</div>")
+  event.sender.send('change_reply_content', "<div id='loading'>Loading...</div>")
 
   load_all_files_in_folder(args).then(
-    function(value) {event.sender.send('asynReply', value)}
+    function(value) {event.sender.send('change_reply_content', value)}
   );
 });
 

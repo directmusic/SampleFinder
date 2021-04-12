@@ -1,21 +1,17 @@
-const
-ipc      = require('electron').ipcRenderer,
+const ipc = require('electron').ipcRenderer;
 
-asyncBtn = document.querySelector('#form');
+const submit_button = document.querySelector('#form');
+
 const file_name = document.querySelector('#file_name');
-let replyDiv = document.querySelector('#reply');
+let reply_div = document.querySelector('#reply');
 
-asyncBtn.addEventListener('submit', () => {
+submit_button.addEventListener('submit', () => {
  ipc.send('search', file_name.value)
 });
 
-ipc.on('asynReply', (event, args) => {
- replyDiv.innerHTML = args;
+ipc.on('change_reply_content', (event, args) => {
+ reply_div.innerHTML = args;
 });
-
-ipcRenderer.on('asynchronous-message', (event, arg) => {
-    console.log(arg) // prints "ping"
-  })
 
 function dragfile(url) {
     ipc.send('ondragstart', url)
