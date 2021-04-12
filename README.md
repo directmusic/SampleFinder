@@ -11,7 +11,7 @@ The advantages over logic's browser:
 
 # Get Started
 
-First, edit the settings.json file to include your favorites and the directories you'd like SampleFinder to search.
+First, edit the `settings.json` file to include your favorites and the directories you'd like SampleFinder to search.
 
 Run the following commands:
 
