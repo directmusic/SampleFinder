@@ -7,6 +7,7 @@ The advantages over logic's browser:
 * Searches for 2+ words searches for files with both of the words rather than their exact string.
 * Searches also look at folder name. (For example: A folder of kicks nameed `kicks` with files named `01.wav, 02.wav, etc...` will show instead of being ignored).
 * Favorites are far more accessible.
+* Samples play on hover for quick previewing.
 
 # Get Started
 
