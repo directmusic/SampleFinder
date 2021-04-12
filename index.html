@@ -22,13 +22,16 @@
         }
         #toolbar {
             -webkit-app-region: drag;
-            height: 1.5em;
+            height: 3em;
             /*background-color: #e2e2e24f;*/
             background-color: white;
             border-radius: 0em 0 0.6em 0.6em;
-            text-align: right;
-            line-height: 1.5rem;
-            margin: 0 1em 0 0;
+            text-align: center;
+            line-height: 1.7rem;
+            margin: 0.2em 1em 0 0;
+        }
+        #title {
+            font-size: 1rem;
         }
         #favorites {
             /*margin: 0 1em 0 0;*/
@@ -132,14 +135,14 @@
         #reply {
             /* padding-top: 3em; */
             position: fixed;
-            top: 4.5em;
+            top: 6em;
             width: 100vw;
             display: block;
             background-color: black;
             overflow: scroll;
             overflow-y: overlay;
             /* overflow-x: hidden; */
-            height: calc(100vh - 3.7em);
+            height: calc(100vh - 5.2em);
             border-radius: 0.6em;
         }
         #loading {
@@ -150,6 +153,28 @@
             font-size: 1.2em;
             margin: 400px 0 0 250px;
             display: inline-block;
+        }
+        #alert {
+            position: fixed;
+            top: 50vh;
+            background-color: rgba(255,255,255,0.2);
+            padding: 1em;
+            border-radius: 1em;
+            color: white;
+            width: calc(100vw - 2em);
+            text-align: center;
+            z-index: 100;
+            display: none;
+        }
+        :not(input):not(textarea),
+        :not(input):not(textarea)::after,
+        :not(input):not(textarea)::before {
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: default;
+        }
+        input, button, textarea, :focus {
+            outline: none; // You should add some other style for :focus to help UX/a11y
         }
     </style>
 </head>
@@ -167,6 +192,8 @@
         <source src="assets/music1.wav" type="audio/wav">
     </audio>
     <div id="toolbar">
+        <span id="title">SampleFinder</span><br>
+
         <span id="sortby">sort by: <a href="#" onclick="sort_by(0)">none</a> | <a href="#" onclick="sort_by(1)">name</a> | <a href="#" onclick="sort_by(2)">date</a> | <a href="#" onclick="sort_by(3)">rand</a></span>
         <span id="favorites"><a href="#" onclick="open_favorites()">favorites</a> | <a href="#" onclick="open_settings()">settings</a></span>
     </div>
@@ -179,6 +206,7 @@
     <div id="reply">
         
     </div>
+    <div id="alert">Copied URL to clipboard.</div>
     <script>
         let counter = 0;
         function hover(url) {
@@ -208,6 +236,26 @@
             }
             counter++;
         }
+        function copyToClipboard (str) {
+            const el = document.createElement('textarea');
+            el.value = str;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+        };
+
+        async function click_check(event, url) {
+            hover(url);
+            if (event.button == 2) {
+                copyToClipboard(url);
+                document.getElementById("alert").style.display = "block";
+                await new Promise(r => setTimeout(r, 1000));
+                document.getElementById("alert").style.display = "none";
+
+            }
+
+        }
         function hoveroff() {
             document.getElementById("my-audio").pause();
             document.getElementById("my-audio1").pause();
@@ -222,10 +270,6 @@
             } else {
                 isEscape = (evt.keyCode === 27);
             }
-            // if (isEscape) {
-            //     document.getElementById("reply").innerHTML = "";
-            //     resize_to_small();
-            // }
         };
      </script>
      <script src="renderer.js"></script>

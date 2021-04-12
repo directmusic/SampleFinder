@@ -143,7 +143,7 @@ function sort_files(files, sort_mode) {
   }
 }
 function update_results(file) {
-  results += "<a class='sample' href='javascript:void(0);' onmouseout='hoveroff()' onclick='hover(\"" + file.path + "\")' onmouseover='hover(\"" + file.path + "\")' ondrag='dragfile(\"" + file.path + "\")'>"+ file.name + "</a> <br>";
+  results += "<a class='sample' href='javascript:void(0);' onmouseout='hoveroff()' onmousedown='click_check(event, \"" + file.path + "\")' onmouseover='hover(\"" + file.path + "\")' ondrag='dragfile(\"" + file.path + "\")'>"+ file.name + "</a> <br>";
 }
 
 async function from_search(startPath, filter, sort_mode){
@@ -233,7 +233,12 @@ ipcMain.on('favorites', (event, args) => {
   load_settings_file();
   let temp = "";
   for (let i = 0; i < settings_json.favorites.length; i++){
-    temp += "<a class='sample' href='javascript:void(0);' onmouseout='hoveroff()' onclick='open_folder(\"" + settings_json.favorites[i] + "\")'><img src='folder.png'/>"+ settings_json.favorites[i]+ "</a> <br>";
+    if (settings_json.favorites[i][settings_json.favorites[i].length - 1] == "/") {
+      temp += "<a class='sample' href='javascript:void(0);' onmouseout='hoveroff()' onclick='open_folder(\"" + settings_json.favorites[i] + "\")'><img src='folder.png'/>"+ settings_json.favorites[i]+ "</a> <br>";
+    } else {
+      temp += "<a class='sample' href='javascript:void(0);' onmouseout='hoveroff()' onclick='hover(\"" + settings_json.favorites[i] + "\")' onmouseover='hover(\"" + settings_json.favorites[i] + "\")' ondrag='dragfile(\"" + settings_json.favorites[i] + "\")'>"+ getfilename(settings_json.favorites[i]) + "</a> <br>";
+
+    }
   }
   event.sender.send('change_reply_content', temp)
 });
